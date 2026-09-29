@@ -1,1 +1,1 @@
-from .neut inport *
+from .neut import *

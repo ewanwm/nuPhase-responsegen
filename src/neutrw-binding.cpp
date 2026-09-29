@@ -85,7 +85,7 @@ class NeutReader
 
 };
 
-PYBIND11_MODULE(pyNeutRW, m)
+PYBIND11_MODULE(neut, m)
 {
 
     m.doc() = 
