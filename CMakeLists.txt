@@ -8,6 +8,6 @@ find_package(ROOT)
 
 add_subdirectory(src)
 
-install(TARGETS neut DESTINATION nuPhase_responsegen/neut)
+install(TARGETS neut DESTINATION nuphase_responsegen/neut)
 
-install(DIRECTORY nuPhase_responsegen DESTINATION .)
+install(DIRECTORY nuphase_responsegen DESTINATION .)
