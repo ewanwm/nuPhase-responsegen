@@ -7,3 +7,7 @@ find_package(NEUT)
 find_package(ROOT)
 
 add_subdirectory(src)
+
+install(TARGETS neut DESTINATION nuPhase_responsegen/neut)
+
+install(DIRECTORY nuPhase_responsegen DESTINATION .)
