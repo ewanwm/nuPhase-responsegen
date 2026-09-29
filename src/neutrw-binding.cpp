@@ -88,46 +88,47 @@ class NeutReader
 PYBIND11_MODULE(pyNeutRW, m)
 {
 
-    m.doc() = "This module provides a very lightweight python wrapper around NEUTs reweighting tools
-
-Typical usage would look something like
-
-.. code:: python
-
-    input_file = <path to some input neut file>
-    neut_card = <path to neut card used to generate the input file>
-
-    initialise(neut_card)
-    reader = NeutReader(input_file_name = input_file)
-    reweighter = make_reweight_instance()
-
-    for entry in range(reader.get_entries()):
-
-        ## do 
-        ## some
-        ## stuff
-        ## with
-        ## reweighter
-
-.. warning:: 
-
-    The `initialise(neut_card=...)` must be called before doing anything else NEUT related
-
-"
+    m.doc() = 
+        "This module provides a very lightweight python wrapper around NEUTs reweighting tools"
+        ""
+        "Typical usage would look something like"
+        ""
+        ".. code:: python"
+        ""
+        "    input_file = <path to some input neut file>"
+        "    neut_card = <path to neut card used to generate the input file>"
+        ""
+        "    initialise(neut_card)"
+        "    reader = NeutReader(input_file_name = input_file)"
+        "    reweighter = make_reweight_instance()"
+        ""
+        "    for entry in range(reader.get_entries()):"
+        ""
+        "        ## do "
+        "        ## some"
+        "        ## stuff"
+        "        ## with"
+        "        ## reweighter"
+        ""
+        ".. warning:: "
+        ""
+        "    The `initialise(neut_card=...)` must be called before doing anything else NEUT related"
+        ""
+    ;
 
     py::class_<NeutReader>(m, "NeutReader", py::buffer_protocol())
         .def(py::init<const std::string&>(), py::arg("input_file_name"))
         .def("get_entries", &NeutReader::getEntries, "Get the number of entries in the file")
         .def("get_entry", &NeutReader::getEntry, "Read a particular entry for the file - this will alter the global neut state to load the specified 'event' as the current one")
-        .doc() = "Simple helper class to aid in reading events from a neut file
-
-Neut uses global variables when reading events so any event loaded by this class becomes *THE* current neut event
-
-.. warning::
-    
-    You should only ever have one NeutReader 'active' at a given time
-
-"
+        .doc() = 
+            "Simple helper class to aid in reading events from a neut file"
+            ""
+            "Neut uses global variables when reading events so any event loaded by this class becomes *THE* current neut event"
+            ""
+            ".. warning::"
+            "    "
+            "    You should only ever have one NeutReader 'active' at a given time"
+            ""
     ;
 
     m.def("initialise", [](const std::string &cardFile) -> void
@@ -148,7 +149,7 @@ Neut uses global variables when reading events so any event loaded by this class
                 neut::NSyst_t index = self.DialFromString(dialName);
                 return self.GetDial_From_Value(index);
             },
-            "Get the value of the dial that was used to generate the current neut file", py_arg("dial_name")
+            "Get the value of the dial that was used to generate the current neut file", py::arg("dial_name")
         )
         .def("set_dial", [](neut::rew::NReWeight &self, const std::string &dialName, float dialValue) -> void
             {
@@ -174,42 +175,42 @@ Neut uses global variables when reading events so any event loaded by this class
             py::arg("dial_name")
         )
         .def("reset", &neut::rew::NReWeight::Reset, "Reset dial values. You will probably want to call this after calc_weight() and before setting any new dial values")
-        .doc() = "Handles reweighting. Should be accessed via the make_reweight_instance() function
-        
-Usage would look something like
-
-.. code:: python
-
-    initialise(<card file>)
-    reader = NeutReader(<neut file>)
-    reader.get_entry(0)
-
-    ## this is the NReWeight instance
-    reweighter = make_reweight_instance()
-
-    for dial_name in <list of dial names>:
-
-        ## check that the dial is actually handled by some reweight engine
-        assert reweighter.dial_is_handled(dial_name)
-
-        for value in <list of dial values>:
-
-            ## set the dial to some value
-            reweighter.set_dial(dial, value)
-
-            ## registers any changes to dials
-            reweighter.reconfigure()
-
-            weight = reweighter.calc_weight()
-
-            print(weight)
-
-            ## resets any changes to dials
-            reweighter.reset()
-
-.. note:: The call to reconfigure() *before* calc_weight() and the call to reset() *after*
-
-"
+        .doc() = 
+            "Handles reweighting. Should be accessed via the make_reweight_instance() function"
+            ""
+            "Usage would look something like"
+            ""
+            ".. code:: python"
+            ""
+            "    initialise(<card file>)"
+            "    reader = NeutReader(<neut file>)"
+            "    reader.get_entry(0)"
+            ""
+            "    ## this is the NReWeight instance"
+            "    reweighter = make_reweight_instance()"
+            ""
+            "    for dial_name in <list of dial names>:"
+            ""
+            "        ## check that the dial is actually handled by some reweight engine"
+            "        assert reweighter.dial_is_handled(dial_name)"
+            ""
+            "        for value in <list of dial values>:"
+            ""
+            "            ## set the dial to some value"
+            "            reweighter.set_dial(dial, value)"
+            ""
+            "            ## registers any changes to dials"
+            "            reweighter.reconfigure()"
+            ""
+            "            weight = reweighter.calc_weight()"
+            ""
+            "            print(weight)"
+            ""
+            "            ## resets any changes to dials"
+            "            reweighter.reset()"
+            ""
+            ".. note:: The call to reconfigure() *before* calc_weight() and the call to reset() *after*"
+            ""
     ;
 
     m.def("make_reweight_instance", &neut::rew::MakeNReWeightInstance).doc() = "Creates a NReWeight instance that can be used to apply reweights to the currenly loaded event";
