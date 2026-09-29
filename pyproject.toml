@@ -1,6 +1,6 @@
 
 [project]
-name = "nuphase_response_gen"
+name = "nuphase_responsegen"
 description="Prepare response functions for neutrino interaction models for use in nuPhase analyses"
 readme = "README.md"
 authors = [
@@ -29,6 +29,8 @@ dependencies = [
   "matplotlib",
   "tqdm",
   "uproot",
+  "cerberus",
+  "pyyaml"
 ]
 
 dynamic = ["version"]
