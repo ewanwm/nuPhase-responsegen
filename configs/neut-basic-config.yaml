@@ -1,0 +1,94 @@
+parameters:
+
+    [
+        {
+            name: "MaCCQE",
+            values: [-3, -2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma",
+        },
+
+        {
+            name: "SRCFrac_O",
+            values: [0, 0.5, 1],
+            value_type: "absolute"
+        },
+
+        {
+            name: "MaRES",
+            values: [-3, -2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "CA5RES",
+            values: [-3, -2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "PionFSI_AbsProb",
+            values: [-3, -2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "PionFSI_QELowMomProb",
+            values: [-3, -2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "PionFSI_QEHighMomProb",
+            values: [-2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "PionFSI_CExLowMomProb",
+            values: [-2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "PionFSI_CExHighMomProb",
+            values: [-3, -2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "PionFSI_InelProb",
+            values: [0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "NucleonFSI_Total",
+            values: [-2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "NucleonFSI_Elastic",
+            values: [-2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "NucleonFSI_Single",
+            values: [-2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "NucleonFSI_Double",
+            values: [-2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        },
+
+        {
+            name: "NucleonFSI_PB",
+            values: [-2, -1, 0, 1, 2, 3],
+            value_type: "tweak_sigma"
+        }
+
+    ]
