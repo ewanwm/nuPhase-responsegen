@@ -1,0 +1,72 @@
+
+[project]
+name = "nuphase_response_gen"
+description="Prepare response functions for neutrino interaction models for use in nuPhase analyses"
+readme = "README.md"
+authors = [
+  { name = "Ewan Miller", email = "e.w.miller@imperial.ac.uk" },
+]
+requires-python = ">=3.9"
+#license = {file="LICENSE"}
+keywords = ["neutrino", "oscillation", "physics", "particle", "tensor", "experiment", "autograd", "differentiable programming", "cross section", "neutrino interaction"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Operating System :: POSIX :: Linux",
+  "Environment :: GPU",
+  "Programming Language :: C++",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Intended Audience :: Science/Research"
+]
+
+dependencies = [
+  "matplotlib",
+  "tqdm",
+  "uproot",
+]
+
+dynamic = ["version"]
+
+[project.optional-dependencies]
+docs = [
+  "sphinx",
+  "breathe",
+  "autodoc",
+  "sphinx-rtd-theme",
+  "sphinx-tabs",
+  "pybind11-stubgen",
+]
+testing = [
+  "pytest"
+]
+
+[project.urls]
+Repository = "https://github.com/ewanwm/nuPhase-responsegen"
+Issues = "https://github.com/ewanwm/nuPhase-responseGen/issues"
+Documentation = "https://ewanwm.github.io/nuPhase-responsegen/"
+
+[build-system]
+requires = ["scikit-build-core>=0.3.3", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+[tool.cibuildwheel]
+build-frontend = "build[uv]"
+
+[tool.scikit-build.metadata.version]
+provider = "scikit_build_core.metadata.setuptools_scm"
+
+[tool.scikit-build.sdist]
+include = ["src/package/_version.py"]
+
+[tool.setuptools_scm]  # Section required
+write_to = "_version.py"
+
+[project.scripts]
+
+  nuPhase-responsegen = "nuphase_responsegen.app.main:main"
