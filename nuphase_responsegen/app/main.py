@@ -8,6 +8,7 @@ import pickle
 
 import matplotlib.pyplot as plt
 
+from nuphase_responsegen import neut
 from nuphase_responsegen.neut import NReWeight, make_reweight_instance, NeutReader
 
 class Dial:
