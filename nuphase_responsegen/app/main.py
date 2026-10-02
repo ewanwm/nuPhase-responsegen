@@ -17,12 +17,20 @@ class Dial:
         self,
         name: str,
         sigma: float,
+        generated_value: float,
+        handled_by: str,
         response_function_values: typing.List[float]
     ):
 
         self.name: str = name
         self.sigma: float = sigma
+        self.handled_by: str = handled_by
+        self.generated_value: float = generated_value
         self.response_function_values: typing.List[float] = response_function_values
+
+    def to_dict(self):
+
+        return self.__dict__
 
 class ReweightConfig:
 
@@ -96,7 +104,7 @@ class ReweightConfig:
 
         self.parameters = []
 
-        for parameter_yaml in self.yaml_config["parameters"]:
+        for parameter_yaml in config["parameters"]:
 
             param_name = parameter_yaml["name"]
             param_sigma = self.reweight_instance.get_dial_sigma(param_name)
@@ -123,6 +131,8 @@ class ReweightConfig:
             dial = Dial(
                 name = param_name,
                 sigma = param_sigma,
+                handled_by = "neut", ## TODO: Right now only neut exists but in future may not be the case. Remember to change this if that happens!!!!
+                generated_value = generated_value,
                 response_function_values = param_values
             )
 
@@ -184,7 +194,7 @@ def plot_response_functions(args):
 def make_response_functions(args):
 
     ## initialise global neut stuff
-    initialise(args.neut_card)
+    neut.initialise(args.neut_card)
 
     ## initialise the neut file reader
     reader = NeutReader(args.input)
@@ -209,6 +219,7 @@ def make_response_functions(args):
 
     data = {
         "config": config.yaml_config,
+        "dials": [param.to_dict() for param in config.parameters],
         "weights": []
     }
 
